@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo App | Gestor de Tareas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>✓</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">📋 My Todo App</h1>
+                <p class="subtitle">Organiza tus tareas de forma eficiente</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="todoInput" 
+                        class="todo-input" 
+                        placeholder="Agrega una nueva tarea..."
+                        autocomplete="off"
+                    >
+                    <button id="addBtn" class="add-btn" title="Agregar tarea (Enter)">
+                        <span class="btn-icon">+</span>
+                        <span class="btn-text">Agregar</span>
+                    </button>
+                </div>
+                <div class="input-hints">
+                    <small>💡 Presiona <kbd>Enter</kbd> para agregar rápidamente</small>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stat">
+                    <span class="stat-label">Total:</span>
+                    <span class="stat-value" id="totalCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Activas:</span>
+                    <span class="stat-value" id="activeCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Completadas:</span>
+                    <span class="stat-value" id="completedCount">0</span>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="filter-icon">📌</span> Todas
+                    </button>
+                    <button class="filter-btn" data-filter="active">
+                        <span class="filter-icon">⏱️</span> Activas
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <span class="filter-icon">✅</span> Completadas
+                    </button>
+                </div>
+
+                <div class="search-wrapper">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Buscar tareas..."
+                        autocomplete="off"
+                    >
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+
+            <!-- Todos List -->
+            <div class="todos-container">
+                <div id="todosList" class="todos-list">
+                    <!-- Las tareas se insertan aquí -->
+                </div>
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <p class="empty-text">No hay tareas aún</p>
+                    <p class="empty-hint">¡Crea una nueva tarea para comenzar!</p>
+                </div>
+            </div>
+
+            <!-- Actions Section -->
+            <div class="actions-section">
+                <button id="clearCompletedBtn" class="action-btn danger" title="Eliminar todas las tareas completadas">
+                    <span class="action-icon">🗑️</span> Limpiar completadas
+                </button>
+                <button id="exportBtn" class="action-btn primary" title="Descargar tareas como JSON">
+                    <span class="action-icon">📥</span> Exportar
+                </button>
+                <button id="importBtn" class="action-btn primary" title="Cargar tareas desde JSON">
+                    <span class="action-icon">📤</span> Importar
+                </button>
+                <input 
+                    type="file" 
+                    id="importFile" 
+                    accept=".json" 
+                    style="display: none;"
+                >
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Tus datos se guardan automáticamente en tu navegador 💾</p>
+            <p class="footer-version">v1.0.0</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Tarea</h2>
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input 
+                    type="text" 
+                    id="editInput" 
+                    class="modal-input" 
+                    placeholder="Edita tu tarea..."
+                >
+            </div>
+            <div class="modal-footer">
+                <button id="cancelEditBtn" class="btn-cancel">Cancelar</button>
+                <button id="saveEditBtn" class="btn-save">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
